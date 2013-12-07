@@ -1,16 +1,30 @@
 LISEZ MOI
----------
+=========
+
+
 
 DOOH : Gestion Affichage Dynamique ( Digital Out Of Home )
 
 Site web : http://dooh.jlcf.org/
 GitHub : https://github.com/jlcf/dooh
 
+Fichiers de documentation :
+-------------------------
+LISEZMOI.txt : Ce document
+dooh_pres.odp : Presentation Impress du module "Dooh Raspberry Pi"
+dooh_pres.pdf : Export pdf de la presentation Impress
+presentation_DOOH_light.pdf : Texte de présentation des grands principe du "DOOH"
+specificationsDOOH.pdf : Spécifications techniques du module "DOOH"
+
+Principe :
+----------
+
 Pour afficher une présentation sur l'écran d'affichage dynamique, créer des presentation aux formats Impress (.odp), format de la page 16/9ème (si votre écran d'affichae est en 16/9ème ;).
 
 Déposer le ou les fichiers de présentation dans le répertoire du Raspberry Pi qui gère l'écran :
 
 Structure des répertoires :
+==========================
 
 dooh/slides
 -----------
