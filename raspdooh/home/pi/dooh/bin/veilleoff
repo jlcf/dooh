@@ -1,0 +1,9 @@
+#!/bin/bash
+
+LOGFILE="/home/pi/dooh/log/dooh.log"
+
+ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+
+echo "[$ISTIME] dooh veille OFF" |tee -a $LOGFILE
+
+xset s reset -display :0

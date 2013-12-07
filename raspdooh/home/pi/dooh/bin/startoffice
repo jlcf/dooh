@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PATHSLIDE="/home/pi/dooh/slides"
+DISPLAY=:0 libreoffice --norestore -show /home/pi/dooh/slides/$1 &

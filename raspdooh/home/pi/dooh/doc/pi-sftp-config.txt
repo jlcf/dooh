@@ -1,0 +1,13 @@
+service sftp port 2222 sur Rapsberry Pi
+
+/etc/sshd/sshd_config_sftp
+
+
+/etc/default/pi-sftp
+
+/etc/init.d/pi-sftp
+
+/var/run/pi-sftp.pid
+
+
+

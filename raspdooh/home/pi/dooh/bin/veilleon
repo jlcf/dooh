@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PATHSLIDE="/home/pi/dooh/slides"
+LOGFILE="/home/pi/dooh/log/dooh.log"
+
+# killall soffice
+killall soffice.bin > /dev/null 2>&1 &
+rm -f $PATHSLIDE/.~lock*
+
+ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+
+echo "[$ISTIME] dooh veille ON" |tee -a $LOGFILE
+DISPLAY=:0 xset dpms force off
+
+exit 0

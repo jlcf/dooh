@@ -1,0 +1,70 @@
+LISEZ MOI
+---------
+
+DOOH : Gestion Affichage Dynamique ( Digital Out Of Home )
+
+Site web : http://dooh.jlcf.org/
+GitHub : https://github.com/jlcf/dooh
+
+Pour afficher une présentation sur l'écran d'affichage dynamique, créer des presentation aux formats Impress (.odp), format de la page 16/9ème (si votre écran d'affichae est en 16/9ème ;).
+
+Déposer le ou les fichiers de présentation dans le répertoire du Raspberry Pi qui gère l'écran :
+
+Structure des répertoires :
+
+dooh/slides
+-----------
+
+Répertoire de dépot des présentations.
+
+Principe :
+
+Si aucun fichier de présentation du jour ou hebdomadaire, n'est trouvé, c'est la présentation par defaut qui sera affichée : default-slideshow.odp
+Si un fichier hebdomadaire est trouvé : semaine-NN-AAAAA.odp ou NN est le numéro de la semaine et AAAAA l'année, c'est le fichier hebdomadaire qui sera affiché.
+Si un fihcier jour est trouvé : NomJour-JJ-MM-AAAA.odp, c'est le fichier du jour qui sera affiché.
+
+en résumé :
+fichier de présentation par défaut : default-slideshow.odp
+fichier hebdomadiare pour la semaine 46 de l'année 2013 : semaine-46-2013.odp
+fichier journalier pour le Mardi 12 Novembre 2013 : mardi-12-11-2013.odp
+
+dooh/conf
+---------
+
+Répertoire de configuration du systeme : fichier dooh.conf
+
+# File configuration for raspeberry pi  dooh
+H_BEGIN="7" # Heure de démarrage de la presentation
+H_END="18" # Heure de fin de la présenation, mise en veille de l'écran
+DAYS="1..5" # Jours de présentation : 1 Lundi, 2 Mardi... 7 Dimanche. dans cette exemple afficgae d'une présentation du Lundi au Vendredi.
+
+Remarque : Pour etre affiché, un fichier defaut, hebdomadaire ou journalier, doit être déposé dans le répertoire dooh/slides avant l'heure H_BEGIN du jour.
+
+
+dooh/templates 
+--------------
+
+Quelques modeles de presentation.
+
+dooh/bin
+--------
+
+Fichier executable (bash) permettant de controler l'affichage.
+
+
+Prise en main a distance du gestionnaire dooh : 
+---------------------------------------------
+
+Il est possible de prendre en main le gestionaire d'écran grace à un client VNC
+@IP de l'écran : 10.97.2.232
+Nom d'hote : dooh.pmcurie.lyc50.ac-caen.fr
+mot de passe d'accès : ecranh@ll
+
+La prise en main à distance, permet à tout moment d'arreter une présentation, d'en lancer une autre... 
+Attention lors de la prise en main, c'est le bureau du gestionaire d'écran qui est affiché sur l'écran d'affichage dynamique.
+
+
+
+
+Licence dooh : DOOH est un ensemble de script sous licence GNU GPL http://www.gnu.org/licenses/gpl.txt
+Mainteneur : jeanluc.chretien@gmail.com
