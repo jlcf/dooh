@@ -1,0 +1,37 @@
+#!/bin/bash
+PATHSLIDE="/home/pi/dooh/slides"
+PATHOFFICE="/home/pi/dooh/bin/startoffice"
+LOGFILE="/home/pi/dooh/log/dooh.log"
+
+# Standby screen
+/home/pi/dooh/bin/veilleon
+
+# killall soffice
+killall soffice.bin > /dev/null 2>&1 &
+rm -f $PATHSLIDE/.~lock*
+
+# Dates 
+
+DAYIS=`date "+%A-%d-%m-%Y"`
+
+WEEKIS=`date "+%V"`
+
+# Start impress
+if [ -e $PATHSLIDE/$DAYIS.odp ]; then
+	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+	echo "[$ISTIME] Presentation du $DAYIS" | tee -a $LOGFILE
+	$PATHOFFICE $DAYIS.odp
+elif [ -e $PATHSLIDE/semaine-$WEEKIS.odp ]; then
+	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+	echo "[$ISTIME] Presentation de la semaine-$WEEKIS" | tee -a $LOGFILE
+        /home/pi/dooh/bin/startoffice semaine-$WEEKIS.odp
+else
+	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+	echo "[$ISTIME] Presentation par defaut" | tee -a $LOGFILE
+	/home/pi/dooh/bin/startoffice default-slideshow.odp
+fi
+
+# wake up
+/home/pi/dooh/bin/veilleoff
+
+exit 0
