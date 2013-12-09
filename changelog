@@ -1,0 +1,15 @@
+raspdooh (0.1.0~2) dooh;
+
+	* Add changelog
+	* Add todo list
+	* Add skel install.sh script
+	* Add default slide show
+
+-- Jean-Luc Chretien <dooh@jlcf.org> 09 Dec 2013 21:30
+
+raspdooh (0.1.0~1) dooh;
+
+	* Initial commit;
+	* Add pi crontab task in /var/spool/cron/crontabs
+
+-- Jean-Luc Chretien <dooh@jlcf.org> 07 Dec 2013

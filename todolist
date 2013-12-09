@@ -1,0 +1,15 @@
+todolist : raspdooh project 
+
+author : jlcf <dooh@jlcf.org>
+
+http://dooh.jlcf.org/
+https://github.com/jlcf/dooh
+https://github.com/jlcf/dooh/archive/master.zip
+===============================================
+
+raspdooh (0.1.0) :
+-----------------
+* Make install script
+* LCS module package : lcs-dooh 
+* Web Interface
+* Samba share acces
