@@ -1,11 +1,14 @@
+
 raspdooh (0.1.0~2) dooh;
 
 	* Add changelog
 	* Add todo list
 	* Add skel install.sh script
 	* Add default slide show
-
--- Jean-Luc Chretien <dooh@jlcf.org> 09 Dec 2013 21:30
+        * Add /home/pi/.config/autostart/x11vnc.desktop
+        * Add /etc/default/pi-sftp
+ 
+-- Jean-Luc Chretien <dooh@jlcf.org>  14 Dec 2013 13:33
 
 raspdooh (0.1.0~1) dooh;
 
