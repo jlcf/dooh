@@ -5,26 +5,38 @@
 
 PASSWDOOH="doohmgr"
 
-# Go to pi home folder
-cd /home/pi
+echo "Install DOOH module on Raspberry PI"
 
-# Install package
-apt-get install xrdp libreoffice x11vnc ntpdate
+if [ -e /home/pi/dooh-master.zip]; then
 
-# make dooh account
-adduser --system --shell /bin/bash --group --disabled-password --home /home/pi/dooh dooh
-echo dooh:$PASSWDOOH | chpasswd
-# get zip archive from github dooh project
+	# Go to pi home folder
+	cd /home/pi
 
-# unzip archive
+	# Install package
+	apt-get install xrdp libreoffice x11vnc ntpdate
 
-# Fix rights on dooh tree
+	# make dooh account
+	adduser --system --shell /bin/bash --group --disabled-password --home /home/pi/dooh dooh
+	echo dooh:$PASSWDOOH | chpasswd
 
-# Update rc.d for
-update-rc.d pi-sftp defaults  
+	# unzip archive
+        unzip dooh-master.zip
+	# cp  and clean files
+        cd dooh-master/raspdooh
+        find . -name .DS_Store -exec rm -f {} \;
+        cp -r * /
+	# Fix rights on dooh tree
 
-# Run dooh with default slide show
-su pi
-/home/pi/dooh/bin/doohrun
+	# Update rc.d for
+	update-rc.d pi-sftp defaults  
 
+	# Run dooh with default slide show
+	su pi
+	/home/pi/dooh/bin/doohrun
+else
+	echo "No raspdooh archive found !"
+        echo "get https://github.com/jlcf/dooh/archive/master.zip"
+	echo "Put in /home/pi and run again install.sh"
+	exit 1
+fi
 exit 0
