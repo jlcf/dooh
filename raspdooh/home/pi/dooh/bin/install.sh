@@ -16,7 +16,7 @@ if [ -e /home/pi/master.zip]; then
 	apt-get install xrdp libreoffice x11vnc ntpdate
 
 	# make dooh account
-	adduser --system --shell /bin/bash --group --disabled-password --home /home/pi/dooh dooh
+	adduser --system --shell /bin/bash --ingroup pi --disabled-password --home /home/pi/dooh dooh
 	echo dooh:$PASSWDOOH | chpasswd
 
 	# unzip archive
