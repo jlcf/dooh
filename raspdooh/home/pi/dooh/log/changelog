@@ -7,8 +7,9 @@ raspdooh (0.1.0~2) dooh;
 	* Add default slide show
         * Add /home/pi/.config/autostart/x11vnc.desktop
         * Add /etc/default/pi-sftp
+        * Fix rights on DOOH tree in install.sh
  
--- Jean-Luc Chretien <dooh@jlcf.org>  14 Dec 2013 13:33
+-- Jean-Luc Chretien <dooh@jlcf.org>  14 Dec 2013 13:50
 
 raspdooh (0.1.0~1) dooh;
 

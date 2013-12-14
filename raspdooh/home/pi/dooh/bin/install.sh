@@ -26,7 +26,17 @@ if [ -e /home/pi/dooh-master.zip]; then
         find . -name .DS_Store -exec rm -f {} \;
         cp -r * /
 	# Fix rights on dooh tree
-
+        chown pi:crontab /var/spool/cron/crontabs/pi
+	chmod 600 /var/spool/cron/crontabs/pi
+	chown root:pi root:pi /home/pi
+	chmod 750 /home/pi
+        chown -R pi:pi /home/pi/*
+	chmod -R 775 /home/pi/*
+	chown root:pi /home/pi/dooh
+	chmod 750 /home/pi/dooh
+	chown -R dooh:pi /home/pi/dooh/*
+	chmod -R 755 /home/pi/dooh/*
+	chmod 770 /home/pi/dooh/slides
 	# Update rc.d for
 	update-rc.d pi-sftp defaults  
 
