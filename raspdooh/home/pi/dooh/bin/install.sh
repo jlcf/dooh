@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# install script for dooh Raspberyy pi project
+# install script for dooh Raspberry pi project
 # jlcf <dooh@jlcf.org>
 
 PASSWDOOH="doohmgr"
 
 echo "Install DOOH module on Raspberry PI"
 
-if [ -e /home/pi/dooh-master.zip]; then
+if [ -e /home/pi/master.zip]; then
 
 	# Go to pi home folder
 	cd /home/pi
@@ -20,7 +20,9 @@ if [ -e /home/pi/dooh-master.zip]; then
 	echo dooh:$PASSWDOOH | chpasswd
 
 	# unzip archive
-        unzip dooh-master.zip
+	if [ ! -d dooh-master ]; then
+        	unzip master.zip
+	fi
 	# cp  and clean files
         cd dooh-master/raspdooh
         find . -name .DS_Store -exec rm -f {} \;
@@ -39,7 +41,8 @@ if [ -e /home/pi/dooh-master.zip]; then
 	chmod 770 /home/pi/dooh/slides
 	# Update rc.d for
 	update-rc.d pi-sftp defaults  
-
+	# Start pi-sftp service
+	/etc/init.d/pi-sftp start
 	# Run dooh with default slide show
 	su pi
 	/home/pi/dooh/bin/doohrun
