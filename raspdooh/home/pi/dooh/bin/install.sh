@@ -7,7 +7,7 @@ PASSWDOOH="doohmgr"
 
 echo "Install DOOH module on Raspberry PI"
 
-if [ -e /home/pi/master.zip]; then
+if [ -e /home/pi/master.zip ]; then
 
 	# Go to pi home folder
 	cd /home/pi
@@ -41,6 +41,7 @@ if [ -e /home/pi/master.zip]; then
 	chown -R dooh:pi /home/pi/dooh/*
 	chmod -R 755 /home/pi/dooh/*
 	chmod 770 /home/pi/dooh/slides
+	chmod 770 /home/pi/dooh/log	
 	# Update rc.d for
 	update-rc.d pi-sftp defaults  
 	# Start pi-sftp service
@@ -50,7 +51,7 @@ if [ -e /home/pi/master.zip]; then
 	/home/pi/dooh/bin/doohrun
 else
 	echo "No raspdooh archive found !"
-        echo "get https://github.com/jlcf/dooh/archive/master.zip"
+    echo "get https://github.com/jlcf/dooh/archive/master.zip"
 	echo "Put in /home/pi and run again install.sh"
 	exit 1
 fi
