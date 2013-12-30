@@ -1,6 +1,7 @@
 #!/bin/bash
 PATHSLIDE="/home/pi/dooh/slides"
 PATHOFFICE="/home/pi/dooh/bin/startoffice"
+CONFFILE="/home/pi/dooh/conf/dooh.conf"
 LOGFILE="/home/pi/dooh/log/dooh.log"
 
 # killall soffice
@@ -9,26 +10,43 @@ rm -f $PATHSLIDE/.~lock*
 
 # Dates 
 
+DAYNAMEIS=`date "+%A"`
+
 DAYIS=`date "+%A-%d-%m-%Y"`
 
 WEEKIS=`date "+%V"`
 
-# Start impress
-if [ -e $PATHSLIDE/$DAYIS.odp ]; then
-	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
-	echo "[$ISTIME] Presentation du $DAYIS" | tee -a $LOGFILE
-	$PATHOFFICE $DAYIS.odp
-elif [ -e $PATHSLIDE/semaine-$WEEKIS.odp ]; then
-	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
-	echo "[$ISTIME] Presentation de la semaine-$WEEKIS" | tee -a $LOGFILE
-        /home/pi/dooh/bin/startoffice semaine-$WEEKIS.odp
+# Conf files
+
+if [ -e  $CONFFILE ]; then
+	. $CONFFILE
+	for DAYLIST in $DAYS; do
+		if [ $DAYNAMEIS = $DAYLIST ]; then
+			# Start impress
+			if [ -e $PATHSLIDE/$DAYIS.odp ]; then
+				ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+				echo "[$ISTIME] Presentation du $DAYIS" | tee -a $LOGFILE
+				$PATHOFFICE $DAYIS.odp
+			elif [ -e $PATHSLIDE/semaine-$WEEKIS.odp ]; then
+				ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+				echo "[$ISTIME] Presentation de la semaine-$WEEKIS" | tee -a $LOGFILE
+			    $PATHOFFICE semaine-$WEEKIS.odp
+			else
+				ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
+				echo "[$ISTIME] Presentation par defaut" | tee -a $LOGFILE
+				$PATHOFFICE default-slideshow.odp
+			fi
+
+			# wake up
+			/home/pi/dooh/bin/veilleoff
+
+			exit 0
+		else
+			echo "[$ISTIME] Pas de presentation ce jour !" | tee -a $LOGFILE
+			exit 0
+		fi
+	done
 else
-	ISTIME=`date "+%d-%m-%Y %H:%M:%S"`
-	echo "[$ISTIME] Presentation par defaut" | tee -a $LOGFILE
-	/home/pi/dooh/bin/startoffice default-slideshow.odp
+        echo "[$ISTIME] Pas de fichier de configuration !" | tee -a $LOGFILE
+        exit 1
 fi
-
-# wake up
-/home/pi/dooh/bin/veilleoff
-
-exit 0
